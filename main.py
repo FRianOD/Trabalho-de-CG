@@ -5,8 +5,16 @@ from math import sin, cos, radians
 
 Keys = {"Up": False, "Down": False, "Left": False, "Right": False, "W": False, "S": False}
 
-PosicaoCamera = [0.0, 0.0, 40.0]
-LookAtCamera  = [ 0.0, 0.0, 0.0]
+PosicaoCamera = [ 15.0, -35.0, 15.0]
+LookAtCamera  = [ 15.0, 10.0, 15.0]
+
+#Visão de cima [1,0,0]
+# PosicaoCamera = [ 0.0, 0.0, 10.0]
+# LookAtCamera  = [ 0.0, 0.0, 0.0]
+
+#Visão Lateral [0,0,1]
+# PosicaoCamera = [ 0.0, 0.0, 5.0]
+# LookAtCamera  = [ 1.0, 1.0, 5.0]
 
 def key_callback(window, key, scancode, action, mods):
     # atualiza o dicionário quando tecla é pressionada ou solta
@@ -448,19 +456,19 @@ def janela():
 def mureta():
     glPushMatrix()
     glScalef(1,15,3)
-    desenharCubo([0.9,0.9,0.9])
+    desenharCubo([0.895,0.895,0.925])
     glPopMatrix()
     
     glPushMatrix()
     glTranslatef(0,0,3)
-    glScalef(2,15,0.25)
-    desenharCubo([0.2,0.2,0.2])
+    glScalef(2,15,0.15)
+    desenharCubo([0.30,0.30,0.30])
     glPopMatrix()
     
     glPushMatrix()
-    glTranslatef(0,7.7,3)
-    glScalef(2,0.5,0.25)
-    desenharCubo([0.2,0.2,0.2])
+    glTranslatef(0,-7.5,3)
+    glScalef(2,1,0.15)
+    desenharCubo([0.30,0.30,0.30])
     glPopMatrix()
   
 def piso():
@@ -472,7 +480,7 @@ def piso():
     glVertex(-0.5,0.5,0)
     glEnd()
     
-    glColor3fv([1,1,1])
+    glColor3fv([0.895,0.895,0.925])
     glLineWidth(2.0)
     glBegin(GL_LINE_LOOP)
     glVertex(0.5,0.5,0)
@@ -485,22 +493,22 @@ def paredeLateral():
       
     glPushMatrix()
     glScale(2.5,5,37.5)
-    desenharCubo([1,1,1])
+    desenharCubo([0.895,0.895,0.925])
     glPopMatrix()
     glPushMatrix()
     glTranslate(0,17.5,0)
     glScale(2.5,31,11.75)
-    desenharCubo([1,1,1])
+    desenharCubo([0.895,0.895,0.925])
     glPopMatrix()
     glPushMatrix()
     glTranslate(0,35.5,0)
     glScale(2.5,5,37.5)
-    desenharCubo([1,1,1])
+    desenharCubo([0.895,0.895,0.925])
     glPopMatrix()
     glPushMatrix()
     glTranslate(0,17.5,34.08)
     glScalef(2.5,31,3.42)
-    desenharCubo([1,1,1])
+    desenharCubo([0.895,0.895,0.925])
     glPopMatrix()
     
     glPushMatrix()
@@ -516,7 +524,7 @@ def render():
     glLoadIdentity()
     gluLookAt(PosicaoCamera[0], PosicaoCamera[1], PosicaoCamera[2],
               LookAtCamera[0], LookAtCamera[1], LookAtCamera[2],
-              1, 0, 0)
+              0, 0, 1)
     
     glPushMatrix()
     desenharLinha()
@@ -536,50 +544,23 @@ def render():
         else:
             x = 9
             y += 10
-    # glPushMatrix()
-    # glTranslate(9,3,0)
-    # glScale(10,10,1)
-    # piso()
-    # glPopMatrix()
-    
-    # glPushMatrix()
-    # glTranslate(19,3,0)
-    # glScale(10,10,1)
-    # piso()
-    # glPopMatrix()
-    
-    # glPushMatrix()
-    # glTranslate(7,16,0)
-    # glScale(12,12,1)
-    # piso()
-    # glPopMatrix()
-    
-    # glPushMatrix()
-    # glTranslate(16,1,0)
-    # glScale(6,6,1)
-    # piso()
-    # glPopMatrix()
-    # glPushMatrix()
-    # glTranslate(4,7,0)
-    # glScale(6,6,1)
-    # piso()
-    # glPopMatrix()
-    
-    # glPushMatrix()
-    # glTranslate(35,0,0)
-    # mesa()
-    # glPopMatrix()
     
     glPushMatrix()
     glScale(0.8,0.8,0.8)
     paredeLateral()
     glPopMatrix()
     
+    glPushMatrix()
+    glTranslatef(27,6,0)
+    glScale(1.5,1,3)
+    mureta()
+    glPopMatrix()
+    
     # glPushMatrix()
-    # glTranslatef(-15,0,0)
-    # glScale(1,1,3)
-    # mureta()
+    # mesa()
     # glPopMatrix()
+    
+    
     
     
 def main():
